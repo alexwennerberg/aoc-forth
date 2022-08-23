@@ -13,7 +13,7 @@ h# 5000 constant filespace
 
 " input.txt" filename
 
-: solve
+: solvea
   0
   readnum
   2000 1 do
@@ -23,4 +23,5 @@ h# 5000 constant filespace
   drop
 ;
 
-solve .
+solvea .
+( TODO solve part 2 )
