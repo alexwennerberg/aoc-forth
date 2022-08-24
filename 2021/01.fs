@@ -11,7 +11,6 @@ h# 5000 constant filespace
     drop
 ;
 
-" input.txt" filename
 
 : solvea
   0
@@ -23,5 +22,14 @@ h# 5000 constant filespace
   drop
 ;
 
-solvea .
-( TODO solve part 2 )
+: solveb
+200
+;
+
+: boot
+    s" input01.txt" filename
+    solvea . solveb .
+    bye 
+;
+save 01.rom \ Replace with soln number
+bye
