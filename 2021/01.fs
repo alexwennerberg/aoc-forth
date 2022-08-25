@@ -1,5 +1,7 @@
 h# 5000 constant filespace
 
+: initfile s" input01.txt" filename ;
+
 : readnum
     0 ( return val )
     begin
@@ -13,6 +15,7 @@ h# 5000 constant filespace
 
 
 : solvea
+  initfile
   0
   readnum
   2000 1 do
@@ -22,13 +25,32 @@ h# 5000 constant filespace
   drop
 ;
 
+: 3dup 2 pick 2 pick 2 pick ;
+
+
+
+variable total
+variable last
+
 : solveb
-200
+  initfile
+  readnum readnum readnum \ read 3 nums
+  2000 3 do
+  3dup + + dup \ sum
+  last @ 
+  swap < 0<> negate total +!
+  last ! \ store variable
+  rot drop \ remove oldest value
+  readnum
+  loop
+  total @
 ;
+
 
 : boot
     s" input01.txt" filename
-    solvea . solveb .
+    solvea . cr
+    solveb .
     bye 
 ;
 save 01.rom \ Replace with soln number
