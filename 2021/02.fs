@@ -11,12 +11,15 @@ h# 5000 constant filespace
 
 variable xpos
 variable ydepth
+variable aim
 
-: solvea 
-  1000 0 do readline 
+: getcommand 
   filespace c@ \ get direction
   filespace 20 32 scan drop 1+ \ read until space
   c@ chartonum swap \ get number
+;
+: solvea 
+  1000 0 do readline getcommand
   dup 102 = if \ 'f'
   over xpos +!
   then dup 100 = if \ 'd'
@@ -25,16 +28,30 @@ variable ydepth
   over negate ydepth +!
   then 
   2drop loop
-  xpos @ ydepth @ . 
+  xpos @ ydepth @ um*
 ;
 
-: solveb
-  10
+: solveb \ TODO figure out how to store double
+  s" input02.txt" filename
+  1000 0 do readline getcommand
+  dup 102 = if \ 'f'
+  over xpos +!
+  over aim @ * ydepth +!
+  then dup 100 = if \ 'd'
+  over aim +!
+  then dup 117 = if \ 'u'
+  over negate aim +!
+  then 
+  xpos @ ydepth @ aim @ . . . cr
+  2drop loop
+  xpos @ ydepth @ .s um*
 ;
 
 : boot
     s" input02.txt" filename
-    solvea . cr \ TODO double math??
+    solvea d. cr \ TODO double math??
+    0 xpos ! 0 ydepth !
+    solveb d. cr
     bye ;
 save 02.rom \ Replace with soln number
 bye

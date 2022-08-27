@@ -20,6 +20,8 @@ uxncli ufx.rom < N.fs
 uxnemu N.rom
 ```
 
+Working on different ways of importing things, some days require helper functions
+
 Some solutions have visualizations, others do not. For those that don't, you can use uxncli
 
 part 1 and part 2 solutions will be printed to the console, newline separated
